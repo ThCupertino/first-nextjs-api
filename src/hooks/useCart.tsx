@@ -2,15 +2,15 @@ import { ProductType } from "@/services/products"
 import { ReactNode, createContext, useContext, useEffect, useState } from "react"
 
 type CartContextType = {
-  cart: ProductType[],
-  addProduct: (product: ProductType) => void,
-  removeProduct: (product: number) => void
+  cart: ProductType[]
+  addProduct: (product: ProductType) => void
+  removeProduct: (productId: number) => void
 }
 
-const CartContext = createContext<CartContextType>( {} as CartContextType)
+const CartContext = createContext<CartContextType>({} as CartContextType)
 
-export const CartContextProvider  = (props: {
-  children?: ReactNode,
+export const CartContextProvider = (props: {
+  children: ReactNode
 }) => {
   const [cart, setCart] = useState<ProductType[]>([])
 
@@ -46,7 +46,6 @@ export const CartContextProvider  = (props: {
       {props.children}
     </CartContext.Provider>
   );
-
 }
 
 export const useCart = () => useContext(CartContext)
